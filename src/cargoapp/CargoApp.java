@@ -1,21 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cargoapp;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-/**
- *
- * @author asus
- */
+
 public class CargoApp {
 
     
@@ -29,17 +18,30 @@ public class CargoApp {
             GraphService.printShortestPath();
             
             
-            /*sc = new Scanner(System.in);
-            System.out.print("Hangi şehre gitmek istersiniz: ");
-            String cityName = sc.nextLine();
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Şehir isimlerini giriniz: ");
+            String str = sc.nextLine();
             
-            City targetCity = CityService.findCity(cityList, cityName);
-            if(targetCity != null){
+            String[] cities = str.split(" ");
+            ArrayList<City> targetCities = new ArrayList<>();
+            for(String cityName: cities){
                 
+                City targetCity = CityService.findCity(GraphService.getCityList(), cityName);
+                if(targetCity != null)
+                    targetCities.add(targetCity);
+                else
+                    System.out.println(cityName + " adında bir şehir bulunamadı!");
                 
+            }
+            
+            /*if(!targetCities.isEmpty()){
                 
-            }else{
-                System.out.println("Bu isimde bir şehir bulunamadı.");
+                ArrayList<City> shortestPath = new ArrayList<>();
+                int cost = 0;
+                
+                for(City city: targetCities)
+                    cost += city.getCost();
+                
             }*/
             
     }
