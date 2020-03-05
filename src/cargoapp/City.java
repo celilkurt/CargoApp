@@ -13,6 +13,8 @@ public class City {
     private ArrayList<City> neighborList;
     private ArrayList<Integer> distanceList;
     private int plateNumber;
+    private int cost = 0;
+    private ArrayList<City> shortestPath;
     
     public City(String name, int plateNumber){
         
@@ -20,9 +22,25 @@ public class City {
         this.plateNumber = plateNumber;
         neighborList = new ArrayList<>(); 
         distanceList = new ArrayList<>();
-        
+        shortestPath = new ArrayList<>();
     }
 
+    public ArrayList<City> getShortestPath() {
+        return shortestPath;
+    }
+
+    public void setShortestPath(ArrayList<City> shortestPath) {
+        this.shortestPath = shortestPath;
+    }
+    
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+    
     public int getPlateNumber() {
         return plateNumber;
     }
@@ -58,7 +76,7 @@ public class City {
 
     @Override
     public String toString() {
-        return plateNumber + " " + name;
+        return plateNumber + " " + name + " cost: " + cost;
     }
     
     

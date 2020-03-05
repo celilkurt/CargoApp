@@ -33,9 +33,12 @@ public class CargoApp {
             sc = new Scanner(file);
             createGraph(sc);
             
-            printGraph();
+            GraphService.findShortestPaths(CityService.findCity(cityList, "Kocaeli"),0,new ArrayList<City>());
+            //GraphService.printGraph(cityList);
+            CityService.printShortestPath(cityList);
             
-            sc = new Scanner(System.in);
+            
+            /*sc = new Scanner(System.in);
             System.out.print("Hangi şehre gitmek istersiniz: ");
             String cityName = sc.nextLine();
             
@@ -46,7 +49,7 @@ public class CargoApp {
                 
             }else{
                 System.out.println("Bu isimde bir şehir bulunamadı.");
-            }
+            }*/
             
             
         } catch (FileNotFoundException ex) {
@@ -69,7 +72,6 @@ public class CargoApp {
     
     public static void createGraph(Scanner sc){
         
-        
         while(sc.hasNext()){
             
             String[] words = sc.nextLine().split(",");
@@ -88,15 +90,7 @@ public class CargoApp {
         }
     }
     
-    static void printGraph(){
-        
-        for(City tempCity: cityList){
-                System.out.println("--------------------------------------------");
-                System.out.println(tempCity.toString() + "\n");
-                CityService.printAllNeigbor(tempCity);
-            }
-        
-    }
+    
     
     
     
