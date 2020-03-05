@@ -24,22 +24,29 @@ public class CargoApp {
         
         
         try {
-            City root = null;
             
             File file = new File("city.txt");
             Scanner sc = new Scanner(file);
             
-            cityList = createCityList(sc,cityList);
+            createCityList(sc);
             
             sc = new Scanner(file);
-            createGraph(sc , root);
+            createGraph(sc);
             
-            for(City tempCity: cityList){
-                System.out.println("--------------------------------------------");
-                System.out.println(tempCity.toString() + "\n");
-                tempCity.printAllNeigbor();
-            }
+            printGraph();
+            
+            sc = new Scanner(System.in);
+            System.out.print("Hangi şehre gitmek istersiniz: ");
+            String cityName = sc.nextLine();
+            
+            City targetCity = CityService.findCity(cityList, cityName);
+            if(targetCity != null){
                 
+                
+                
+            }else{
+                System.out.println("Bu isimde bir şehir bulunamadı.");
+            }
             
             
         } catch (FileNotFoundException ex) {
@@ -48,30 +55,28 @@ public class CargoApp {
         
     }
     
-    public static ArrayList<City> createCityList(Scanner sc, ArrayList<City> list){
+    public static void createCityList(Scanner sc){
+        //Her bir şehir için obje oluşturup cityList'e atar.
         
         while(sc.hasNext()){
             
             String[] words = sc.nextLine().split(",");
-            list.add(new City(words[1],Integer.valueOf(words[0])));
-            
+            cityList.add(new City(words[1],Integer.valueOf(words[0])));
             
         }
         
-        return list;
-        
     }
     
-    public static void createGraph(Scanner sc, City root){
+    public static void createGraph(Scanner sc){
         
         
         while(sc.hasNext()){
             
             String[] words = sc.nextLine().split(",");
-            City tempRoot = City.findCity(cityList, words[1]);
+            City tempRoot = CityService.findCity(cityList, words[1]);
             
             for(int i = 2; i < words.length; i++){
-                City newNeighbor = City.findCity(cityList, words[i]);
+                City newNeighbor = CityService.findCity(cityList, words[i]);
                 
                 if(newNeighbor == null){
                     System.out.println(words[i] + " node'u bulunamadı.");
@@ -79,11 +84,17 @@ public class CargoApp {
                     tempRoot.getNeighborList().add(newNeighbor);
                     tempRoot.getDistanceList().add(Math.abs(tempRoot.getPlateNumber()-newNeighbor.getPlateNumber()));
                 }
-                    
-                
             }
-            
         }
+    }
+    
+    static void printGraph(){
+        
+        for(City tempCity: cityList){
+                System.out.println("--------------------------------------------");
+                System.out.println(tempCity.toString() + "\n");
+                CityService.printAllNeigbor(tempCity);
+            }
         
     }
     

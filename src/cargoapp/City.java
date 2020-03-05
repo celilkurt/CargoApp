@@ -54,27 +54,14 @@ public class City {
         this.neighborList = neighborList;
     }
     
-    public static City findCity(ArrayList<City> cityList, String cityName){
-        
-        for(City city: cityList)
-            if(city.getName().equals(cityName))
-                return city;
-        
-        return null;
-        
-    }
+    
 
     @Override
     public String toString() {
         return plateNumber + " " + name;
     }
     
-    public void printAllNeigbor(){
-        
-        for(int i = 0; i < neighborList.size(); i++)
-            System.out.println(neighborList.get(i).toString() + " " + distanceList.get(i));
-        
-    }
+    
     
     
     
