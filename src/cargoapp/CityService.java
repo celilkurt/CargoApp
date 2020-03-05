@@ -35,21 +35,7 @@ public class CityService {
            
     }
     
-    public static void printShortestPath(ArrayList<City> cityList){
-        
-        for(City city: cityList){
-            
-            System.out.println(city);
-            for(City tempCity: city.getShortestPath())
-                System.out.print(tempCity.getName() + " cost: " + tempCity.getCost() + " ");
-            
-            System.out.println("\n");
-        }
-            
-        
-        
-        
-    }
+    
     
     
 }
