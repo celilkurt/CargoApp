@@ -18,7 +18,7 @@ public class CargoApp {
             GraphService.printShortestPath();
             
             
-            Scanner sc = new Scanner(System.in);
+            /*Scanner sc = new Scanner(System.in);
             System.out.print("Şehir isimlerini giriniz: ");
             String str = sc.nextLine();
             
@@ -32,7 +32,7 @@ public class CargoApp {
                 else
                     System.out.println(cityName + " adında bir şehir bulunamadı!");
                 
-            }
+            }*/
             
             /*if(!targetCities.isEmpty()){
                 
